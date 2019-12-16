@@ -7,7 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.naming.NamingException;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class GestorDAO extends DAO<Gestor> {
 
     private static final String INSERT_SQL = "INSERT INTO crud_gestor.gestor (nome) VALUES (?)";
