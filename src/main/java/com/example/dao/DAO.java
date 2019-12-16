@@ -23,16 +23,16 @@ public abstract class DAO<T> {
     
     @Autowired
     private DataSource dataSource;
-
-    private void initDataSource() throws NamingException {
-        if (dataSource == null) {
-            Context ctx = new InitialContext();
-            DataSource dataSource;
-            dataSource = (DataSource) ctx.lookup("java:/comp/env/jdbc/AppGestor");
-
-            dataSource = dataSource;
-        }
-    }
+//
+//    private void initDataSource() throws NamingException {
+//        if (dataSource == null) {
+//            Context ctx = new InitialContext();
+//            DataSource dataSource;
+//            dataSource = (DataSource) ctx.lookup("java:/comp/env/jdbc/AppGestor");
+//
+//            dataSource = dataSource;
+//        }
+//    }
 
     abstract public boolean create(T t);
 
