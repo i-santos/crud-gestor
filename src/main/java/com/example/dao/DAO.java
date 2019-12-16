@@ -18,11 +18,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public abstract class DAO<T> {
 
-    @Value("${spring.datasource.url}")
-    private String dbUrl;
-    
-    @Autowired
-    private DataSource dataSource;
 //
 //    private void initDataSource() throws NamingException {
 //        if (dataSource == null) {
@@ -33,6 +28,8 @@ public abstract class DAO<T> {
 //            dataSource = dataSource;
 //        }
 //    }
+    @Autowired
+    private DataSource dataSource;
 
     abstract public boolean create(T t);
 
@@ -47,20 +44,8 @@ public abstract class DAO<T> {
     protected Connection getConnection() throws NamingException, SQLException {
 
 //        initDataSource();
-
         return dataSource.getConnection();
 
-    }
-
-    @Bean
-    public DataSource dataSource() throws SQLException {
-        if (dbUrl == null || dbUrl.isEmpty()) {
-            return new HikariDataSource();
-        } else {
-            HikariConfig config = new HikariConfig();
-            config.setJdbcUrl(dbUrl);
-            return new HikariDataSource(config);
-        }
     }
 
 }
