@@ -31,7 +31,7 @@ public abstract class DAO<T> {
     @Autowired
     private DataSource dataSource;
 
-    abstract public boolean create(T t);
+    abstract public T create(T t);
 
     abstract public ArrayList<T> read();
 

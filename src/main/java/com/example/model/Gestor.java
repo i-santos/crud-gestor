@@ -1,13 +1,13 @@
 package com.example.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Gestor {
 
     private int id;
     private String nome;
     private String matricula;
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
     private Setor setor;
 
     public int getId() {
@@ -34,11 +34,11 @@ public class Gestor {
         this.matricula = matricula;
     }
 
-    public Date getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(Date dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 

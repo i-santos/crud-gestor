@@ -13,26 +13,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package com.example;
 
+import java.time.format.DateTimeFormatter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
+import org.springframework.format.support.DefaultFormattingConversionService;
+import org.springframework.format.support.FormattingConversionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 
 @Controller
 @SpringBootApplication
 public class Main {
 
-  public static void main(String[] args) throws Exception {
-    SpringApplication.run(Main.class, args);
-  }
+    public static void main(String[] args) throws Exception {
+        SpringApplication.run(Main.class, args);
+    }
 
-  @RequestMapping("/")
-  String index() {
-    return "index";
-  }
+    @RequestMapping("/")
+    String index() {
+        return "index";
+    }
+
+    @Bean
+    public FormattingConversionService conversionService() {
+        DefaultFormattingConversionService conversionService
+                = new DefaultFormattingConversionService(false);
+
+        DateTimeFormatterRegistrar registrar = new DateTimeFormatterRegistrar();
+        registrar.setDateFormatter(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        registrar.registerFormatters(conversionService);
+
+        // other desired formatters
+        return conversionService;
+    }
 
 }

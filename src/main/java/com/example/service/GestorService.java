@@ -16,20 +16,30 @@ public class GestorService {
         this.gestorDao = gestorDao;
     }
 
-    public boolean addGestor(Gestor g) {
-        return gestorDao.create(g );
+    public Gestor addGestor(Gestor g) {
+        return gestorDao.create(g);
     }
-    
+
     public List<Gestor> getAllGestor() {
         return gestorDao.read();
     }
-    
+
     public boolean updateGestor(Gestor g) {
         return gestorDao.update(g);
     }
-    
+
     public boolean deleteGestor(Gestor g) {
         return gestorDao.delete(g);
+    }
+
+    public boolean deleteGestores(List<Gestor> gs) {
+        boolean error = false;
+        for (Gestor g : gs) {
+            if (!gestorDao.delete(g)) {
+                error = true;
+            }
+        }
+        return !error;
     }
 
 }

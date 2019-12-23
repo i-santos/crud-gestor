@@ -1,8 +1,7 @@
 package com.example.api;
 
-import com.example.model.Gestor;
-import com.example.service.GestorService;
-import com.example.wrapper.GestorWrapper;
+import com.example.model.Setor;
+import com.example.service.SetorService;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
@@ -19,51 +18,44 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @RestController
-@RequestMapping("/api/gestor")
-public class GestorController {
-
-    private final GestorService gestorService;
+@RequestMapping("/api/setor")
+public class SetorController {
+    
+    private final SetorService setorService;
 
     @Autowired
-    public GestorController(GestorService gestorService) {
-        this.gestorService = gestorService;
+    public SetorController(SetorService setorService) {
+        this.setorService = setorService;
     }
-
+    
     @GetMapping()
-    public List<Gestor> list() {
-        return gestorService.getAllGestor();
+    public List<Setor> list() {
+        return setorService.getAllSetor();
     }
-
+    
     @GetMapping("/{id}")
-    public Gestor get(@PathVariable String id) {
+    public Object get(@PathVariable String id) {
         return null;
     }
-
+    
     @PutMapping("/{id}")
-    public ResponseEntity<?> put(@PathVariable String id, @RequestBody Gestor input) {
-        return ResponseEntity.ok(gestorService.updateGestor(input));
+    public ResponseEntity<?> put(@PathVariable String id, @RequestBody Object input) {
+        return null;
     }
-
+    
     @PostMapping
-    public ResponseEntity<?> post(@RequestBody Gestor input) {
-        return ResponseEntity.ok(gestorService.addGestor(input));
+    public ResponseEntity<?> post(@RequestBody Object input) {
+        return null;
     }
-
+    
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable String id) {
-        Gestor g = new Gestor();
-        g.setId(Integer.parseInt(id));
-        return ResponseEntity.ok(gestorService.deleteGestor(g));
+        return null;
     }
-
-    @PostMapping("/delete")
-    public ResponseEntity<?> delete(@RequestBody List<Gestor> input) {
-        return ResponseEntity.ok(gestorService.deleteGestores(input));
-    }
-
+    
     @ExceptionHandler(Exception.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR, reason = "Error message")
     public void handleError() {
     }
-
+    
 }
